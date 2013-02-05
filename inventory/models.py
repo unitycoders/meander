@@ -19,6 +19,9 @@ class BaseModel(models.Model):
 	manufacturer = models.CharField(max_length=255) # must be non-null
 	product_name = models.CharField(max_length=255) # must be non-null
 
+	def __unicode__(self):
+		return self.manufacturer + " " + self.product_name
+
 	class Meta:
 		abstract = True
 
@@ -35,8 +38,8 @@ class BaseAsset(models.Model):
 # the inventory system and may have support contracts and software licences.
 ##
 class SystemModel(BaseModel):
-	sku_number = models.CharField(max_length=255, blank=True, null=True)
-	family = models.CharField(max_length=255, blank=True, null=True)
+	sku_number = models.CharField(max_length=255, blank=True, null=True, help_text="A number which uniquly idenfies this configuration (eg. nc2400#abu).")
+	family = models.CharField(max_length=255, blank=True, null=True, help_text="The family of products this unit it from (eg. Compaq 6200 Pro series)")
 
 	def __unicode__(self):
 		return "%s %s" % (self.manufacturer, self.product_name)
@@ -55,10 +58,15 @@ class System(BaseAsset):
 # tagged and tracked like systems.
 ##
 class PeripheralModel(BaseModel):
-	pass
+	
+	def total(self):
+		return self.peripheral_set.count()
 
 class Peripheral(BaseAsset):
 	model = models.ForeignKey(PeripheralModel)
+
+	def __unicode__(self):
+		return self.tag
 
 ##
 # Accessories
