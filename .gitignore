@@ -3,3 +3,4 @@
 
 # Django Ignores
 meander/local_settings.py
+data/demo.db
