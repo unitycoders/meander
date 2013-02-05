@@ -158,3 +158,9 @@ LOGGING = {
         },
     }
 }
+
+# Local Settings to hide stuff from VCS
+try:
+    from local_settings import *
+except ImportError:
+    pass

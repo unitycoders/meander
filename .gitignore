@@ -1,2 +1,5 @@
 # Python Ignores
 *.pyc
+
+# Django Ignores
+meander/local_settings.py
