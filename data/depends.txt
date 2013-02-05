@@ -1,0 +1,8 @@
+# 3rd Party Dependencies
+
+## Core Dependicies
+Fedora 18 package names in brackets afterwords
+
+* Django 1.4 [python-django]
+* South (http://south.aeracode.org/) [python-django-south]
+
